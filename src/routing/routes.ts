@@ -1,18 +1,22 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 
 import App from "@app/App";
-import Home from "@app/pages/Home";
+import Tournaments from "@app/pages/Tournaments";
 
 
 export const router = createBrowserRouter([
     {
         path: '/',
+        loader: () => redirect('/tournaments'),
+    },
+    {
+        path: '/tournaments',
         element: App(),
         children: [
             {
                 index: true,
-                element: Home(),
-            }
-        ]
+                element: Tournaments(),
+            },
+        ],
     }
 ]);
