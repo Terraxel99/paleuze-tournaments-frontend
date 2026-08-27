@@ -1,0 +1,18 @@
+{
+  "runtime": "Net100",
+  "documentGenerator": {
+    "fromDocument": {
+      "url": "http://localhost:5268/openapi/v1.json"
+    }
+  },
+  "codeGenerators": {
+    "openApiToTypeScriptClient": {
+      "template": "Fetch",
+      "output": "src/repositories/generated/api.ts",
+      "generateClientClasses": true,
+      "generateDtoTypes": true,
+      "useGetBaseUrlMethod": false,
+      "baseUrlTokenName": "API_BASE_URL"
+    }
+  }
+}

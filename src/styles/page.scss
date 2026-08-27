@@ -1,0 +1,9 @@
+.page {
+
+    &__header {
+        
+        > h2 {
+            flex-grow: 1;
+        }
+    }
+}

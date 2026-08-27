@@ -11,11 +11,11 @@ export const router = createBrowserRouter([
     },
     {
         path: '/tournaments',
-        element: App(),
+        element: <App />,
         children: [
             {
                 index: true,
-                element: Tournaments(),
+                element: <Tournaments />,
             },
         ],
     }

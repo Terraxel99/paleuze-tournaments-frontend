@@ -1,0 +1,29 @@
+{
+  "common": {
+    "appTitle": "Paleuze - Tournament Manager",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "areYouSure": "Are you sure ?",
+    "id": "ID"
+  },
+  "tournaments": {
+    "title": "Tournaments",
+    "create": "Create a tournament",
+    "update": "Update a tournament",
+    "name": "Name",
+    "success": {
+        "create": "The tournament was created successfully",
+        "edit": "The tournament was saved successfully",
+        "delete": "The tournament was deleted successfully"
+    },
+    "errors": {
+        "load": "An error occurred while loading the tournament",
+        "edit": "An error occurred while saving the tournament",
+        "create": "An error occurred while creating the tournament",
+        "delete": "An error occurred while deleting the tournament"
+    }
+  }
+}
