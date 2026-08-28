@@ -1,15 +1,15 @@
 import { useTranslation } from "react-i18next";
 
 import { ActionIcon, Button, Card } from "@mantine/core";
-import { notifications } from "@mantine/notifications";
-
 import { TrashIcon } from "@phosphor-icons/react";
 
-import type { TournamentResponse } from "@app/repositories/generated/api";
-import { confirmationService } from "@app/services/confirmation.service";
+import { useApiRepositories } from "@app/contexts/api.context";
+import { notifyError, notifySuccess } from "@app/utils/notifications.helper";
+import type { ITournamentResponse } from "@app/repositories/generated/api";
+import { confirmDelete } from "@app/utils/confirmation.helper";
 
 interface Props {
-    tournament: TournamentResponse;
+    tournament: ITournamentResponse;
     onEdit: (id: string) => void;
     onDelete: () => void;
 }
@@ -17,29 +17,21 @@ interface Props {
 function TournamentCard({ tournament, onEdit, onDelete }: Props): React.ReactNode {
 
     const { t } = useTranslation();
+    const tournamentsRepository = useApiRepositories().tournaments;
     
     const deleteTournament = async () => {
-        /*try {
-            await apiClient.tournamentsDELETE(tournament.id);
-
-            notifications.show({
-                title: t('common.success'),
-                message: t('tournaments.success.delete'),
-                color: 'lime',
-            });
-
+        try {
+            await tournamentsRepository.delete(tournament.id!);
+            notifySuccess({ message: t('tournaments.success.delete') });
             onDelete();
         } catch {
-            notifications.show({
-                title: t('common.error'),
-                message: t('tournaments.errors.delete'),
-                color: 'red',
-            });
-        }*/
+            notifyError({ message: t('tournaments.errors.delete') });
+        }
     };
 
     const handleDelete = () => {
-        confirmationService.confirm({
+        confirmDelete({
+            children: t('tournaments.confirm.delete'),
             onConfirm: deleteTournament,
         });
     };

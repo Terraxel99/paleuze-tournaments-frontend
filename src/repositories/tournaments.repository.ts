@@ -1,5 +1,4 @@
-import type { Client, TournamentRequest, TournamentResponse } from "@app/repositories/generated/api";
-import { notifications } from "@mantine/notifications";
+import type { Client, ITournamentResponse, TournamentRequest } from "@app/repositories/generated/api";
 
 export class TournamentsRepository {
     
@@ -9,36 +8,14 @@ export class TournamentsRepository {
         this._client = apiClient;
     }
 
-    async getAll(): Promise<TournamentResponse[]> {
-
-        try {
-            const data = await this._client.tournamentsAll();
-
-            notifications.show({
-                title: 'common.success',
-                message: 'tournaments.success.get',
-                color: 'grape'
-            });
-
-
-            // Callback here ????
-
-            return data;
-        } catch (e) {
-
-            notifications.show({
-                title: 'common.fail',
-                message: 'tournaments.fail.get',
-                color: 'red'
-            });
-
-            throw e;
-        }
-
+    async getAll(): Promise<ITournamentResponse[]> {
+        const tournaments = await this._client.tournamentsAll();
+        return tournaments.map((t) => t.toJSON());
     }
 
-    async getById(id: string): Promise<TournamentResponse> {
-        return await this._client.tournamentsGET(id);
+    async getById(id: string): Promise<ITournamentResponse> {
+        const tournament = await this._client.tournamentsGET(id);
+        return tournament.toJSON();
     }
 
     async create(tournament: TournamentRequest): Promise<string> {

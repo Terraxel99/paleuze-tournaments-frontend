@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
  * @param a The api call to fetch
  * @returns The API data, loading state and errors.
  */
-export function useApiFetch<T>(apiCall: () => Promise<T>) {
+export function useApiRefresh<T>(apiCall: () => Promise<T>) {
     const [data, setData] = useState<T>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<unknown | undefined>();
