@@ -1,0 +1,39 @@
+@use 'variables' as vars;
+
+@mixin tournament-badge-color($color) {
+    .tournament__card__badge {
+        border-color: $color;
+        color: $color;
+    }
+}
+
+.tournament {
+
+    &__card {
+        transition: all ease-in 0.1s;
+
+        &.status {
+            border-left-width: 4px;
+            border-left-style: solid;
+
+            &-created {
+                border-left-color: vars.$status-created-color;
+                @include tournament-badge-color(vars.$status-created-color);                
+            }
+
+            &-ongoing {
+                border-left-color: vars.$status-ongoing-color;
+                @include tournament-badge-color(vars.$status-ongoing-color);                
+            }
+
+            &-completed {
+                border-left-color: vars.$status-completed-color;
+                @include tournament-badge-color(vars.$status-completed-color);                
+            }
+        }
+
+        &:hover {
+            transform: scale(1.02);
+        }
+    }
+}

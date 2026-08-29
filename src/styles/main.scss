@@ -1,3 +1,7 @@
-@use 'reset.scss';
-@use 'form.scss';
+@use 'reset';
+@use 'variables';
+
 @use 'page.scss';
+@use 'form.scss';
+
+@use 'tournaments.scss';

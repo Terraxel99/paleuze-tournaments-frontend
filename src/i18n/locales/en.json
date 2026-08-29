@@ -6,6 +6,8 @@
     "success": "Success",
     "confirm": "Confirm",
     "confirmationRequired": "Confirmation required",
+    "edit": "Edit",
+    "delete": "Delete",
     "warning": "Warning",
     "cancel": "Cancel",
     "areYouSure": "Are you sure ?",
@@ -14,8 +16,14 @@
   "forms":{
     "sureCancelModifications": "You have unsaved changes, are you sure you want to cancel ?"
   },
+  "statuses": {
+    "created": "Created",
+    "ongoing": "Ongoing",
+    "completed": "Completed"
+  },
   "tournaments": {
     "title": "Tournaments",
+    "goto": "Go to tournament",
     "create": "Create a tournament",
     "update": "Update a tournament",
     "name": "Name",

@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-import { ActionIcon, Button, Card } from "@mantine/core";
-import { TrashIcon } from "@phosphor-icons/react";
+import { ActionIcon, Badge, Card, Group, Stack, Text, Tooltip } from "@mantine/core";
+import { InfoIcon, PencilSimpleIcon, TrashIcon } from "@phosphor-icons/react";
 
 import { useApiRepositories } from "@app/contexts/api.context";
 import { notifyError, notifySuccess } from "@app/utils/notifications.helper";
@@ -17,7 +18,13 @@ interface Props {
 function TournamentCard({ tournament, onEdit, onDelete }: Props): React.ReactNode {
 
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const tournamentsRepository = useApiRepositories().tournaments;
+
+
+    const navigateToTournament = () => {
+        navigate(`/tournaments/${tournament.id}`);
+    };
     
     const deleteTournament = async () => {
         try {
@@ -36,12 +43,37 @@ function TournamentCard({ tournament, onEdit, onDelete }: Props): React.ReactNod
         });
     };
 
+    const status = 'completed'; // TODO: Change when statuses exist in BE.
+
     return (
-        <Card padding="md" withBorder>
-            <Card.Section>
-                <Button onClick={() => onEdit(tournament.id!)}>{tournament.name}</Button>
-                <ActionIcon onClick={handleDelete}><TrashIcon /></ActionIcon>
-            </Card.Section>
+        <Card className={`tournament__card status status-${status}`} padding="lg" withBorder>
+
+            <Group justify="space-between">
+
+                <Stack gap="xs">
+                    <Stack gap={0}>
+                        <Text size="xs" c="dimmed">{ tournament.id }</Text>
+                        <Text>{ tournament.name }</Text>
+                    </Stack>
+                    
+                    <Badge className="tournament__card__badge">{ t(`statuses.${status}`) }</Badge>
+                </Stack>
+
+                <Group gap="xs">
+                    <Tooltip color="gray" label={t('tournaments.goto')}>
+                        <ActionIcon color="gray" onClick={navigateToTournament}><InfoIcon /></ActionIcon>
+                    </Tooltip>
+
+                    <Tooltip color="gray" label={t('common.edit')}>
+                        <ActionIcon onClick={() => onEdit(tournament.id!)}><PencilSimpleIcon /></ActionIcon>
+                    </Tooltip>
+
+                    <Tooltip label={t('common.delete')}>
+                        <ActionIcon color="red" onClick={handleDelete}><TrashIcon /></ActionIcon>
+                    </Tooltip>
+                </Group>
+
+            </Group>
         </Card>
     )
 }

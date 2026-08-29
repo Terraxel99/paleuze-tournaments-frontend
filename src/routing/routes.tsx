@@ -1,7 +1,9 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
 
 import App from "@app/App";
-import Tournaments from "@app/pages/Tournaments";
+
+import TournamentsPage from "@app/pages/TournamentsPage";
+import TournamentPage from "@app/pages/TournamentPage";
 
 
 export const router = createBrowserRouter([
@@ -15,7 +17,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Tournaments />,
+                element: <TournamentsPage />,
+            },
+            {  
+                path: ':id',
+                element: <TournamentPage />,
             },
         ],
     }
