@@ -75,7 +75,7 @@ function TournamentCard({ tournament, onEdit, onDelete }: Props): React.ReactNod
 
             </Group>
         </Card>
-    )
+    );
 }
 
 export default TournamentCard;

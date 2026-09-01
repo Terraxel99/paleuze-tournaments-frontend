@@ -1,14 +1,13 @@
-import { AppShell, Group, type AppShellHeaderConfiguration, type AppShellNavbarConfiguration } from "@mantine/core";
-
-import { useTranslation } from "react-i18next";
+import { AppShell, type AppShellHeaderConfiguration, type AppShellNavbarConfiguration } from "@mantine/core";
 import { Outlet } from "react-router-dom";
+
+import Navbar from "@app/components/Navbar/Navbar";
+import Header from "@app/components/Header/Header";
 
 const HEADER_HEIGHT: number = 100;
 const NAVBAR_WIDTH: number = 300;
 
 function App() {
-
-    const { t } = useTranslation();
 
     const headerProps: AppShellHeaderConfiguration = { height: HEADER_HEIGHT };
     const navbarProps: AppShellNavbarConfiguration = { width: NAVBAR_WIDTH, breakpoint: 'sm' };
@@ -16,13 +15,11 @@ function App() {
     return (
         <AppShell header={headerProps} navbar={navbarProps} padding="md">
             <AppShell.Header>
-                <Group h="100%" px="md">
-                    <h1>{t('common.appTitle')}</h1>
-                </Group>
+                <Header />
             </AppShell.Header>
 
             <AppShell.Navbar p="md">
-                Work in progress...
+                <Navbar />
             </AppShell.Navbar>
 
             <AppShell.Main>
