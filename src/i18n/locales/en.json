@@ -11,7 +11,9 @@
     "warning": "Warning",
     "cancel": "Cancel",
     "areYouSure": "Are you sure ?",
-    "id": "ID"
+    "id": "ID",
+    "settings": "Settings",
+    "logout": "Log out"
   },
   "forms":{
     "sureCancelModifications": "You have unsaved changes, are you sure you want to cancel ?"
